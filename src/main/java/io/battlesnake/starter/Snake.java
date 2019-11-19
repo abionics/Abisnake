@@ -122,7 +122,7 @@ public class Snake {
         public Map<String, String> move(JsonNode moveRequest) {
             Map<String, String> response = new HashMap<>();
             response.put("move", "up");
-            LOG.info("up!");
+            LOG.info("up");
             return response;
         }
 
