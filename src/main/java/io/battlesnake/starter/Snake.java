@@ -30,6 +30,8 @@ public class Snake {
      * @param args are ignored.
      */
     public static void main(String[] args) {
+        LOG.info("0");
+        System.out.println("!");
         String port = System.getProperty("PORT");
         if (port != null) {
             LOG.info("Found system provided port: {}", port);
