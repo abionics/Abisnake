@@ -18,7 +18,7 @@ public class Logic {
 
     Logic(String json) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("#{Rails.root}/tmp/file.txt"));
             writer.write(json + "\n");
 
 //        JSONObject object = new JSONObject(json);
