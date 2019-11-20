@@ -33,13 +33,13 @@ public class Server {
      * @param args are ignored.
      */
     public static void main(String[] args) {
-//        try {
-//            BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"));
-//            writer.write("test");
-//            writer.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"));
+            writer.write("test");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         String port = System.getProperty("PORT");
         if (port != null) {
