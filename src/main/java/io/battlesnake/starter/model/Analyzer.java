@@ -2,7 +2,6 @@ package io.battlesnake.starter.model;
 
 import io.battlesnake.starter.help.Point;
 import io.battlesnake.starter.model.heuristic.Heuristic;
-import io.battlesnake.starter.model.prediction.Prediction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +20,7 @@ public class Analyzer extends Core {
     public String analyze() {
         int suitCount = 4;
         for (int directionID = 0; directionID < 4; directionID++) {
-            Point direction = Prediction.directions[directionID];
+            Point direction = Directions.values().get(directionID);
             Point nextHeadPoint = Point.add(me.head(), direction);
             Element element = get(nextHeadPoint.x, nextHeadPoint.y);
             suitDirections[directionID] = true;
@@ -43,7 +42,7 @@ public class Analyzer extends Core {
             if (suitDirections[directionID]) {
                 visited = new boolean[width][height];
                 countFree = 0;
-                Point start = Point.add(head, Prediction.directions[directionID]);
+                Point start = Point.add(head, Directions.values().get(directionID));
                 lookFree(start);
                 if (countFree < me.length + 2 && suitCount > 0) {
                     suitDirections[directionID] = false;
@@ -57,7 +56,7 @@ public class Analyzer extends Core {
         for (int directionID = 0; directionID < 4; directionID++)
             if (suitDirections[directionID]) {
                 for (Snake snake : snakes) {
-                    Point start = Point.add(head, Prediction.directions[directionID]);
+                    Point start = Point.add(head, Directions.values().get(directionID));
                     int dist = Point.dist(snake.head(), start);
                     System.out.println(dist + " " + head + " " + start + " | " + snake.length + " " + me.length);
                     if (dist == 1 && snake.length >= me.length && suitCount > 0) {
@@ -77,20 +76,17 @@ public class Analyzer extends Core {
         foods.sort((o1, o2) -> -Point.dist(o1, o2));
         System.out.println(foods);
 
-        int distToNearestFood = 0;
-        if (foods.size() != 0) {
-            distToNearestFood = Point.dist(head, foods.get(0));
-        }
-        double k = (me.health - distToNearestFood * 10.0) / me.health;
-        System.out.println(k);
-        if (k < 0) k = 0;
-        if (k > 1) k = 1;
-
-        k += 0.2; // hardcode value :D have fun^
-        System.out.println(k);
+        int distNearestFood = 0;
+        if (foods.size() != 0)
+            distNearestFood = Point.dist(head, foods.get(0));
+        double hungry = (me.health - distNearestFood * 10.0) / me.health;
+        if (hungry < 0) hungry = 0;
+        if (hungry > 1) hungry = 1;
+        hungry += 0.2; // hardcode value :D have fun^
+        System.out.println("hungry = " + hungry);
 
         Heuristic heuristic = new Heuristic(this);
-        heuristic.heuristic(k);
+        heuristic.heuristic(hungry);
         HashMap<String, Integer> result = heuristic.get();
         System.out.println(result);
 
@@ -100,7 +96,7 @@ public class Analyzer extends Core {
         if (rand.nextInt(2) == 1) {
             for (int directionID = 0; directionID < 4; directionID++)
                 if (suitDirections[directionID]) {
-                    String name = Prediction.names[directionID];
+                    String name = Directions.names().get(directionID);
                     System.out.println(directionID + " " + name + result.get(name));
                     if (result.get(name) > max) {
                         max = result.get(name);
@@ -110,7 +106,7 @@ public class Analyzer extends Core {
         } else {
             for (int directionID = 3; directionID >= 0; directionID--)
                 if (suitDirections[directionID]) {
-                    String name = Prediction.names[directionID];
+                    String name = Directions.names().get(directionID);
                     System.out.println(directionID + " " + name + result.get(name));
                     if (result.get(name) > max) {
                         max = result.get(name);
@@ -122,7 +118,7 @@ public class Analyzer extends Core {
     }
 
     private void lookFree(Point current) {
-        for (Point direction : Prediction.directions) {
+        for (Point direction : Directions.values()) {
             Point next = Point.add(current, direction);
             if (get(next.x, next.y) == Element.NONE && !visited[next.x][next.y]) {
                 visited[next.x][next.y] = true;
@@ -133,10 +129,9 @@ public class Analyzer extends Core {
     }
 
     private String getSingleSuit() {
-        System.out.println("single");
-        for (int i = 0; i < 4; i++)
-            if (suitDirections[i])
-                return Prediction.names[i];
-        return Prediction.names[0];
+        for (int directionID = 0; directionID < 4; directionID++)
+            if (suitDirections[directionID])
+                return Directions.names().get(directionID);
+        return Directions.names().get(0);   // never
     }
 }

@@ -1,21 +1,13 @@
 package io.battlesnake.starter.model.prediction;
 
-import io.battlesnake.starter.help.Point;
 import io.battlesnake.starter.help.Printer;
 import io.battlesnake.starter.model.Core;
+import io.battlesnake.starter.model.Directions;
 import io.battlesnake.starter.model.heuristic.Heuristic;
 
 import java.util.Arrays;
 
 public class Prediction {
-    public final static Point[] directions = new Point[]{
-            new Point(-1, 0),
-            new Point(+1, 0),
-            new Point(0, -1),
-            new Point(0, +1),
-    };
-    public final static String[] names = new String[]{"left", "right", "up", "down"};
-
     public String predict(Core core) {
         System.out.println(core.snakes.size());
         int deep = 3;  //odd (непарное епта) 2*n+1
@@ -35,8 +27,9 @@ public class Prediction {
         for (int i = 0; i < 4; i++) {
             if (scores[i] > scores[maxi]) maxi = i;
         }
-        System.out.println(names[maxi]);
-        return names[maxi];
+        String result = Directions.names().get(maxi);
+        System.out.println(result);
+        return result;
     }
 
     private int predict(PredictionItem current, int deep) {

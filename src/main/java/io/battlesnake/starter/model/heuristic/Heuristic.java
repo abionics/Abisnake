@@ -24,10 +24,10 @@ public class Heuristic {
 
     public void heuristic(double hungry) {
         Element[][] nearest = core.getNearest(NEAREST_FIELD_SIZE);
-        int[][] foodWeight = readFile("food.txt", NEAREST_FIELD_SIZE);
-        int[][] bodyWeight = readFile("body.txt", NEAREST_FIELD_SIZE);
-//        int[][] headWeight = readFile("head.txt", NEAREST_FIELD_SIZE);
-        int[][] wallWeight = readFile("wall.txt", NEAREST_FIELD_SIZE);
+        int[][] foodWeight = readWeightFile("food.txt");
+        int[][] bodyWeight = readWeightFile("body.txt");
+//        int[][] headWeight = readWeightFile("head.txt");
+        int[][] wallWeight = readWeightFile("wall.txt");
 
         directions = new HashMap<>(4);
         directions.put("up", 0);
@@ -55,7 +55,6 @@ public class Heuristic {
 //                if (element == Element.HEAD) calculate.accept(point, headWeight[i][j]);
                 if (element == Element.WALL) calculate.accept(point, wallWeight[i][j]);
             }
-
 //        Printer.print(nearest, NEAREST_FIELD_SIZE);
     }
 
@@ -75,11 +74,11 @@ public class Heuristic {
         return directions;
     }
 
-    static int[][] readFile(String name, int size) {
+    private static int[][] readWeightFile(String name) {
         try {
-            int[][] result = new int[size][size];
-            for (int i = 0; i < size; i++)
-                for (int j = 0; j < size; j++)
+            int[][] result = new int[NEAREST_FIELD_SIZE][NEAREST_FIELD_SIZE];
+            for (int i = 0; i < NEAREST_FIELD_SIZE; i++)
+                for (int j = 0; j < NEAREST_FIELD_SIZE; j++)
                     result[i][j] = 0;
             BufferedReader reader = new BufferedReader(new FileReader(name));
             String line = reader.readLine();

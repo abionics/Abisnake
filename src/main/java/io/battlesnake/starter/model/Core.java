@@ -1,24 +1,23 @@
 package io.battlesnake.starter.model;
 
 import io.battlesnake.starter.help.Point;
-import io.battlesnake.starter.model.prediction.Prediction;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class Core {
-    public final int width;
+    protected final int width;
     public final int height;
-    public final ArrayList<Point> food;
+    protected final ArrayList<Point> food;
     public final ArrayList<Snake> snakes;
-    public final Snake me;
+    protected final Snake me;
 
     public Element[][] field;
-    public Point head;
+    protected Point head;
 
 
-    public Core(String json) {
+    protected Core(String json) {
         JSONObject object = new JSONObject(json);
 
         JSONObject board = object.getJSONObject("board");

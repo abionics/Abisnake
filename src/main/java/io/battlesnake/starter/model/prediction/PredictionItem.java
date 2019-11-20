@@ -2,17 +2,18 @@ package io.battlesnake.starter.model.prediction;
 
 import io.battlesnake.starter.help.Point;
 import io.battlesnake.starter.model.Core;
+import io.battlesnake.starter.model.Directions;
 import io.battlesnake.starter.model.Element;
 import io.battlesnake.starter.model.Snake;
 
-public class PredictionItem extends Core {
+class PredictionItem extends Core {
     PredictionItem(Core core) {
         super(core);
     }
 
     int moveOther(int snakeID, int directionID) {
         Snake snake = snakes.get(snakeID);
-        Point direction = Prediction.directions[directionID];
+        Point direction = Directions.values().get(directionID);
         Point nextHeadPoint = Point.add(snake.head(), direction);
         Element element = get(nextHeadPoint.x, nextHeadPoint.y);
         switch (element) {
@@ -30,7 +31,7 @@ public class PredictionItem extends Core {
 
     int moveMe(int directionID) {
         Snake snake = me;
-        Point direction = Prediction.directions[directionID];
+        Point direction = Directions.values().get(directionID);
         Point nextHeadPoint = Point.add(snake.head(), direction);
         Element element = get(nextHeadPoint.x, nextHeadPoint.y);
         switch (element) {
