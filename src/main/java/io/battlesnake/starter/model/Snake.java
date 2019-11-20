@@ -1,4 +1,4 @@
-package io.battlesnake.starter;
+package io.battlesnake.starter.model;
 
 import io.battlesnake.starter.help.Point;
 import org.json.JSONArray;
@@ -11,7 +11,7 @@ public class Snake {
     final String name;
     final int health;
     final ArrayList<Point> body;
-    final Point head;
+    final int length;
 
     Snake(JSONObject json) {
         id = json.getString("id");
@@ -25,7 +25,21 @@ public class Snake {
             int y = point.getInt("y");
             body.add(new Point(x, y));
         }
-        head = body.get(0);
+        length = body.size();
+    }
+
+    Point head() {
+        return body.get(0);
+    }
+
+    void move(int dx, int dy, boolean isEaten) {
+        Point last = new Point(body.get(body.size() - 1));
+        for (int i = body.size() - 1; i > 0; i++) {
+            body.set(i, body.get(i - 1));
+        }
+        if (isEaten) body.add(last);
+        head().x += dx;
+        head().y += dy;
     }
 
     public boolean equals(Object other) {

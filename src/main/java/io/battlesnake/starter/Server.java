@@ -2,6 +2,8 @@ package io.battlesnake.starter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.battlesnake.starter.model.Core;
+import io.battlesnake.starter.model.heuristic.Heuristic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Request;
@@ -28,51 +30,52 @@ public class Server {
      * @param args are ignored.
      */
     public static void main(String[] args) {
-//        Logic logic = new Logic("{\n" +
-//                "  \"game\": {\n" +
-//                "    \"id\": \"game-id-string\"\n" +
-//                "  },\n" +
-//                "  \"turn\": 4,\n" +
-//                "  \"board\": {\n" +
-//                "    \"height\": 15,\n" +
-//                "    \"width\": 15,\n" +
-//                "    \"food\": [\n" +
-//                "      {\n" +
-//                "        \"x\": 1,\n" +
-//                "        \"y\": 3\n" +
-//                "      }\n" +
-//                "    ],\n" +
-//                "    \"snakes\": [\n" +
-//                "      {\n" +
-//                "        \"id\": \"snake-id-string\",\n" +
-//                "        \"name\": \"Sneky Snek\",\n" +
-//                "        \"health\": 90,\n" +
-//                "        \"body\": [\n" +
-//                "          {\n" +
-//                "            \"x\": 1,\n" +
-//                "            \"y\": 3\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"x\": 1,\n" +
-//                "            \"y\": 4\n" +
-//                "          }\n" +
-//                "        ]\n" +
-//                "      }\n" +
-//                "    ]\n" +
-//                "  },\n" +
-//                "  \"you\": {\n" +
-//                "    \"id\": \"snake-id-string\",\n" +
-//                "    \"name\": \"Sneky Snek\",\n" +
-//                "    \"health\": 90,\n" +
-//                "    \"body\": [\n" +
-//                "      {\n" +
-//                "        \"x\": 1,\n" +
-//                "        \"y\": 3\n" +
-//                "      }\n" +
-//                "    ]\n" +
-//                "  }\n" +
-//                "}");
-//        System.out.println(logic.heuristic());
+        Core core = new Core("{\n" +
+                "  \"game\": {\n" +
+                "    \"id\": \"game-id-string\"\n" +
+                "  },\n" +
+                "  \"turn\": 4,\n" +
+                "  \"board\": {\n" +
+                "    \"height\": 15,\n" +
+                "    \"width\": 15,\n" +
+                "    \"food\": [\n" +
+                "      {\n" +
+                "        \"x\": 3,\n" +
+                "        \"y\": 5\n" +
+                "      }\n" +
+                "    ],\n" +
+                "    \"snakes\": [\n" +
+                "      {\n" +
+                "        \"id\": \"snake-id-string-enemy\",\n" +
+                "        \"name\": \"Enemy\",\n" +
+                "        \"health\": 90,\n" +
+                "        \"body\": [\n" +
+                "          {\n" +
+                "            \"x\": 1,\n" +
+                "            \"y\": 3\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"x\": 1,\n" +
+                "            \"y\": 4\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"you\": {\n" +
+                "    \"id\": \"snake-id-string\",\n" +
+                "    \"name\": \"Me\",\n" +
+                "    \"health\": 90,\n" +
+                "    \"body\": [\n" +
+                "      {\n" +
+                "        \"x\": 3,\n" +
+                "        \"y\": 3\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "}");
+        Heuristic algorithm = new Heuristic(core);
+        System.out.println(algorithm.heuristic());
 
         String port = System.getProperty("PORT");
         if (port != null) {
@@ -164,8 +167,9 @@ public class Server {
          * @return a response back to the engine containing snake movement values.
          */
         public Map<String, String> move(JsonNode moveRequest) {
-            Logic logic = new Logic(moveRequest.toString());
-            String direction = logic.heuristic();
+            Core core = new Core(moveRequest.toString());
+            Heuristic algorithm = new Heuristic(core);
+            String direction = algorithm.heuristic();
             Map<String, String> response = new HashMap<>();
             response.put("move", direction);
             return response;
