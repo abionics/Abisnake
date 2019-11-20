@@ -4,16 +4,13 @@ import io.battlesnake.starter.help.Point;
 import io.battlesnake.starter.model.heuristic.Heuristic;
 import io.battlesnake.starter.model.prediction.Prediction;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
 public class Analyzer extends Core {
-    boolean[] suitDirections = new boolean[4];
-    boolean[][] visited;
-    int countFree;
+    private boolean[] suitDirections = new boolean[4];
+    private boolean[][] visited;
+    private int countFree;
 
     public Analyzer(String json) {
         super(json);
@@ -86,11 +83,17 @@ public class Analyzer extends Core {
         heuristic.heuristic(k);
         HashMap<String, Integer> result = heuristic.get();
 
+        int max = Integer.MIN_VALUE;
+        String res = "";
         for (int directionID = 0; directionID < 4; directionID++)
-            if (!suitDirections[directionID])
-                result.put(Prediction.names[directionID], Integer.MIN_VALUE);
-
-        return heuristic.getResult().getKey();
+            if (suitDirections[directionID]) {
+                String name = Prediction.names[directionID];
+                if (result.get(name) > max) {
+                    max = result.get(name);
+                    res = name;
+                }
+            }
+        return res;
     }
 
     private void lookFree(Point current) {
