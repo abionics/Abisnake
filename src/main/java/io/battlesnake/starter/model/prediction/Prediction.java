@@ -14,7 +14,7 @@ public class Prediction {
             new Point(0, -1),
             new Point(0, +1),
     };
-    final static String[] names = new String[]{"left", "right", "down", "up"};
+    final static String[] names = new String[]{"right", "left", "down", "up"};
 
     public String predict(Core core) {
         System.out.println(core.snakes.size());
