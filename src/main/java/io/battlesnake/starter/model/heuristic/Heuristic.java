@@ -24,10 +24,10 @@ public class Heuristic {
 
     public void heuristic(double hungry) {
         Element[][] nearest = core.getNearest(NEAREST_FIELD_SIZE);
-        int[][] foodWeight = readWeightFile("food.txt");
-        int[][] bodyWeight = readWeightFile("body.txt");
-//        int[][] headWeight = readWeightFile("head.txt");
-        int[][] wallWeight = readWeightFile("wall.txt");
+        int[][] foodWeight = readWeightFile("_food.txt");
+        int[][] bodyWeight = readWeightFile("_body.txt");
+//        int[][] headWeight = readWeightFile("_head.txt");
+        int[][] wallWeight = readWeightFile("_wall.txt");
 
         directions = new HashMap<>(4);
         directions.put("up", 0);
