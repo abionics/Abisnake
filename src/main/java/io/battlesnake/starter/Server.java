@@ -162,7 +162,6 @@ public class Server {
             Logic logic = new Logic(moveRequest.asText());
             Map<String, String> response = new HashMap<>();
             response.put("move", "down");
-            LOG.info("up!");
             return response;
         }
 
