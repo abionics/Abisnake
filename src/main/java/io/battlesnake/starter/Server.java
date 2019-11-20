@@ -246,12 +246,12 @@ public class Server {
          */
         public Map<String, String> move(JsonNode moveRequest) {
             Core core = new Core(moveRequest.toString());
-            Prediction prediction = new Prediction();
-            String direction = prediction.predict(core);
+//            Prediction prediction = new Prediction();
+//            String direction = prediction.predict(core);
 
-//            Heuristic algorithm = new Heuristic(core);
-//            algorithm.heuristic(1);
-//            String direction = algorithm.getResult().getKey();
+            Heuristic algorithm = new Heuristic(core);
+            algorithm.heuristic(1);
+            String direction = algorithm.getResult().getKey();
 
 //            Analyzer analyzer = new Analyzer(moveRequest.toString());
 //            String direction = analyzer.analyze();
