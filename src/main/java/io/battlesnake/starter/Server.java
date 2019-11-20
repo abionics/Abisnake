@@ -32,130 +32,126 @@ public class Server {
      * @param args are ignored.
      */
     public static void main(String[] args) {
-//        Core core = new Core("{\n" +
-//                "  \"game\": {\n" +
-//                "    \"id\": \"game-id-string\"\n" +
-//                "  },\n" +
-//                "  \"turn\": 4,\n" +
-//                "  \"board\": {\n" +
-//                "    \"height\": 5,\n" +
-//                "    \"width\": 5,\n" +
-//                "    \"food\": [\n" +
-//                "      {\n" +
-//                "        \"x\": 3,\n" +
-//                "        \"y\": 3\n" +
-//                "      }\n" +
-//                "    ],\n" +
-//                "    \"snakes\": [\n" +
-//                "      {\n" +
-//                "        \"id\": \"snake-id-string\",\n" +
-//                "        \"name\": \"Sneky Snek\",\n" +
-//                "        \"health\": 90,\n" +
-//                "        \"body\": [\n" +
-//                "          {\n" +
-//                "            \"x\": 1,\n" +
-//                "            \"y\": 3\n" +
-//                "          }\n" +
-//                "        ]\n" +
-//                "      },\n" +
-//                "      {\n" +
-//                "        \"id\": \"snake-id-string-enemy\",\n" +
-//                "        \"name\": \"Sneky Snek Enemy\",\n" +
-//                "        \"health\": 90,\n" +
-//                "        \"body\": [\n" +
-//                "          {\n" +
-//                "            \"x\": 4,\n" +
-//                "            \"y\": 4\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"x\": 3,\n" +
-//                "            \"y\": 4\n" +
-//                "          }\n" +
-//                "        ]\n" +
-//                "      }\n" +
-//                "    ]\n" +
-//                "  },\n" +
-//                "  \"you\": {\n" +
-//                "    \"id\": \"snake-id-string\",\n" +
-//                "    \"name\": \"Sneky Snek\",\n" +
-//                "    \"health\": 90,\n" +
-//                "    \"body\": [\n" +
-//                "      {\n" +
-//                "        \"x\": 1,\n" +
-//                "        \"y\": 3\n" +
-//                "      }\n" +
-//                "    ]\n" +
-//                "  }\n" +
-//                "}");
-//        Analyzer analyzer = new Analyzer("{\n" +
-//                "  \"game\": {\n" +
-//                "    \"id\": \"game-id-string\"\n" +
-//                "  },\n" +
-//                "  \"turn\": 4,\n" +
-//                "  \"board\": {\n" +
-//                "    \"height\": 15,\n" +
-//                "    \"width\": 15,\n" +
-//                "    \"food\": [\n" +
-//                "      {\n" +
-//                "        \"x\": 5,\n" +
-//                "        \"y\": 3\n" +
-//                "      },\n" +
-//                "      {\n" +
-//                "        \"x\": 3,\n" +
-//                "        \"y\": 3\n" +
-//                "      }\n" +
-//                "    ],\n" +
-//                "    \"snakes\": [\n" +
-//                "      {\n" +
-//                "        \"id\": \"snake-id-string\",\n" +
-//                "        \"name\": \"Sneky Snek\",\n" +
-//                "        \"health\": 90,\n" +
-//                "        \"body\": [\n" +
-//                "          {\n" +
-//                "            \"x\": 1,\n" +
-//                "            \"y\": 0\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"x\": 1,\n" +
-//                "            \"y\": 1\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"x\": 2,\n" +
-//                "            \"y\": 1\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"x\": 2,\n" +
-//                "            \"y\": 0\n" +
-//                "          }\n" +
-//                "        ]\n" +
-//                "      }\n" +
-//                "    ]\n" +
-//                "  },\n" +
-//                "  \"you\": {\n" +
-//                "    \"id\": \"snake-id-string\",\n" +
-//                "    \"name\": \"Sneky Snek\",\n" +
-//                "    \"health\": 90,\n" +
-//                "    \"body\": [\n" +
-//                "      {\n" +
-//                "        \"x\": 1,\n" +
-//                "        \"y\": 0\n" +
-//                "      },\n" +
-//                "      {\n" +
-//                "        \"x\": 1,\n" +
-//                "        \"y\": 1\n" +
-//                "      },\n" +
-//                "      {\n" +
-//                "        \"x\": 1,\n" +
-//                "        \"y\": 2\n" +
-//                "      },\n" +
-//                "      {\n" +
-//                "        \"x\": 0,\n" +
-//                "        \"y\": 2\n" +
-//                "      }\n" +
-//                "    ]\n" +
-//                "  }\n" +
-//                "}");
-//        analyzer.analyze();
+        Core core = new Core("{\n" +
+                "  \"game\": {\n" +
+                "    \"id\": \"game-id-string\"\n" +
+                "  },\n" +
+                "  \"turn\": 4,\n" +
+                "  \"board\": {\n" +
+                "    \"height\": 5,\n" +
+                "    \"width\": 5,\n" +
+                "    \"food\": [\n" +
+                "      {\n" +
+                "        \"x\": 3,\n" +
+                "        \"y\": 3\n" +
+                "      }\n" +
+                "    ],\n" +
+                "    \"snakes\": [\n" +
+                "      {\n" +
+                "        \"id\": \"snake-id-string\",\n" +
+                "        \"name\": \"Sneky Snek\",\n" +
+                "        \"health\": 90,\n" +
+                "        \"body\": [\n" +
+                "          {\n" +
+                "            \"x\": 1,\n" +
+                "            \"y\": 3\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"id\": \"snake-id-string-enemy\",\n" +
+                "        \"name\": \"Sneky Snek Enemy\",\n" +
+                "        \"health\": 90,\n" +
+                "        \"body\": [\n" +
+                "          {\n" +
+                "            \"x\": 4,\n" +
+                "            \"y\": 4\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"x\": 3,\n" +
+                "            \"y\": 4\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"you\": {\n" +
+                "    \"id\": \"snake-id-string\",\n" +
+                "    \"name\": \"Sneky Snek\",\n" +
+                "    \"health\": 90,\n" +
+                "    \"body\": [\n" +
+                "      {\n" +
+                "        \"x\": 1,\n" +
+                "        \"y\": 3\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "}");
+        Analyzer analyzer = new Analyzer("{\n" +
+                "  \"game\": {\n" +
+                "    \"id\": \"game-id-string\"\n" +
+                "  },\n" +
+                "  \"turn\": 4,\n" +
+                "  \"board\": {\n" +
+                "    \"height\": 15,\n" +
+                "    \"width\": 15,\n" +
+                "    \"food\": [\n" +
+                "      {\n" +
+                "        \"x\": 5,\n" +
+                "        \"y\": 3\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"x\": 3,\n" +
+                "        \"y\": 3\n" +
+                "      }\n" +
+                "    ],\n" +
+                "    \"snakes\": [\n" +
+                "      {\n" +
+                "        \"id\": \"snake-id-string\",\n" +
+                "        \"name\": \"Sneky Snek\",\n" +
+                "        \"health\": 90,\n" +
+                "        \"body\": [\n" +
+                "          {\n" +
+                "            \"x\": 1,\n" +
+                "            \"y\": 0\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"x\": 1,\n" +
+                "            \"y\": 1\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"x\": 2,\n" +
+                "            \"y\": 1\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"x\": 2,\n" +
+                "            \"y\": 0\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"you\": {\n" +
+                "    \"id\": \"snake-id-string\",\n" +
+                "    \"name\": \"Sneky Snek\",\n" +
+                "    \"health\": 90,\n" +
+                "    \"body\": [\n" +
+                "      {\n" +
+                "        \"x\": 0,\n" +
+                "        \"y\": 5\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"x\": 1,\n" +
+                "        \"y\": 5\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"x\": 2,\n" +
+                "        \"y\": 5\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "}");
+        analyzer.analyze();
 //        Prediction prediction = new Prediction();
 //        prediction.predict(core);
 
@@ -253,7 +249,7 @@ public class Server {
 //            Prediction prediction = new Prediction();
 //            String direction = prediction.predict(core);
 
-//            Heuristic algorithm = new Heuristic(core);    
+//            Heuristic algorithm = new Heuristic(core);
 //            algorithm.heuristic(1);
 //            String direction = algorithm.getResult().getKey();
 

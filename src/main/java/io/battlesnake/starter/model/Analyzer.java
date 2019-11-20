@@ -88,6 +88,7 @@ public class Analyzer extends Core {
         for (int directionID = 0; directionID < 4; directionID++)
             if (suitDirections[directionID]) {
                 String name = Prediction.names[directionID];
+                System.out.println(directionID + " " + name + result.get(name));
                 if (result.get(name) > max) {
                     max = result.get(name);
                     res = name;
