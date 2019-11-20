@@ -26,7 +26,7 @@ public class Heuristic {
         Element[][] nearest = core.getNearest(NEAREST_FIELD_SIZE);
         int[][] foodWeight = readFile("food.txt", NEAREST_FIELD_SIZE);
         int[][] bodyWeight = readFile("body.txt", NEAREST_FIELD_SIZE);
-        int[][] headWeight = readFile("head.txt", NEAREST_FIELD_SIZE);
+//        int[][] headWeight = readFile("head.txt", NEAREST_FIELD_SIZE);
         int[][] wallWeight = readFile("wall.txt", NEAREST_FIELD_SIZE);
 
         directions = new HashMap<>(4);
@@ -52,7 +52,7 @@ public class Heuristic {
                 Point point = new Point(i, j);
                 if (element == Element.FOOD) calculate.accept(point, (int) (foodWeight[i][j] * hungry));
                 if (element == Element.BODY) calculate.accept(point, bodyWeight[i][j]);
-                if (element == Element.HEAD) calculate.accept(point, headWeight[i][j]);
+//                if (element == Element.HEAD) calculate.accept(point, headWeight[i][j]);
                 if (element == Element.WALL) calculate.accept(point, wallWeight[i][j]);
             }
 
