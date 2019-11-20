@@ -1,6 +1,7 @@
 package io.battlesnake.starter.model;
 
 import io.battlesnake.starter.help.Point;
+import io.battlesnake.starter.model.prediction.Prediction;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

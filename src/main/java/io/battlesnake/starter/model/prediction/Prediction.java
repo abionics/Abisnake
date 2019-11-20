@@ -8,7 +8,7 @@ import io.battlesnake.starter.model.heuristic.Heuristic;
 import java.util.Arrays;
 
 public class Prediction {
-    final static Point[] directions = new Point[]{
+    public final static Point[] directions = new Point[]{
             new Point(-1, 0),
             new Point(+1, 0),
             new Point(0, -1),

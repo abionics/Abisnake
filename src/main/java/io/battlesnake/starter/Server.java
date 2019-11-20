@@ -180,10 +180,10 @@ public class Server {
          */
         public Map<String, String> move(JsonNode moveRequest) {
             Core core = new Core(moveRequest.toString());
-            Prediction prediction = new Prediction();
-            String direction = prediction.predict(core);
-//            Heuristic algorithm = new Heuristic(core);
-//            String direction = algorithm.heuristic();
+//            Prediction prediction = new Prediction();
+//            String direction = prediction.predict(core);
+            Heuristic algorithm = new Heuristic(core);
+            String direction = algorithm.heuristic().getKey();
             Map<String, String> response = new HashMap<>();
             response.put("move", direction);
             return response;
