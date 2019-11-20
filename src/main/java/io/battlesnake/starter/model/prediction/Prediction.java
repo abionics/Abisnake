@@ -14,7 +14,7 @@ public class Prediction {
             new Point(0, -1),
             new Point(0, +1),
     };
-    final static String[] names = new String[]{"right", "left", "down", "up"};
+    public final static String[] names = new String[]{"left", "right", "up", "down"};
 
     public String predict(Core core) {
         System.out.println(core.snakes.size());
@@ -44,7 +44,8 @@ public class Prediction {
             Printer.print(current.field, current.height);
             System.out.println();
             Heuristic heuristic = new Heuristic(current);
-            return heuristic.heuristic().getValue();
+            heuristic.heuristic(1);
+            return heuristic.getResult().getValue();
         } else {
             deep--;
             if (deep % 2 == 0) {

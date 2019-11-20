@@ -1,7 +1,6 @@
 package io.battlesnake.starter.model.heuristic;
 
 import io.battlesnake.starter.help.Point;
-import io.battlesnake.starter.help.Printer;
 import io.battlesnake.starter.model.Core;
 import io.battlesnake.starter.model.Element;
 
@@ -16,20 +15,21 @@ public class Heuristic {
     private static final int NEAREST_FIELD_SIZE = 7;
 
     private Core core;
+    private HashMap<String, Integer> directions;
 
 
     public Heuristic(Core core) {
         this.core = core;
     }
 
-    public Map.Entry<String, Integer> heuristic() {
+    public void heuristic(double hungry) {
         Element[][] nearest = core.getNearest(NEAREST_FIELD_SIZE);
         int[][] foodWeight = readFile("food.txt", NEAREST_FIELD_SIZE);
         int[][] bodyWeight = readFile("body.txt", NEAREST_FIELD_SIZE);
         int[][] headWeight = readFile("head.txt", NEAREST_FIELD_SIZE);
         int[][] wallWeight = readFile("wall.txt", NEAREST_FIELD_SIZE);
 
-        HashMap<String, Integer> directions = new HashMap<>(4);
+        directions = new HashMap<>(4);
         directions.put("up", 0);
         directions.put("right", 0);
         directions.put("down", 0);
@@ -50,13 +50,16 @@ public class Heuristic {
             for (int j = 0; j < NEAREST_FIELD_SIZE; j++) {
                 Element element = nearest[i][j];
                 Point point = new Point(i, j);
-                if (element == Element.FOOD) calculate.accept(point, foodWeight[i][j]);
+                if (element == Element.FOOD) calculate.accept(point, (int) (foodWeight[i][j] * hungry));
                 if (element == Element.BODY) calculate.accept(point, bodyWeight[i][j]);
                 if (element == Element.HEAD) calculate.accept(point, headWeight[i][j]);
                 if (element == Element.WALL) calculate.accept(point, wallWeight[i][j]);
             }
 
 //        Printer.print(nearest, NEAREST_FIELD_SIZE);
+    }
+
+    public Map.Entry<String, Integer> getResult() {
         Map.Entry<String, Integer> max = null;
         for (Map.Entry<String, Integer> item : directions.entrySet()) {
             if (max == null || item.getValue() > max.getValue()) {
@@ -66,6 +69,10 @@ public class Heuristic {
 //        System.out.println(directions);
 //        System.out.println(max);
         return max;
+    }
+
+    public HashMap<String, Integer> get() {
+        return directions;
     }
 
     static int[][] readFile(String name, int size) {

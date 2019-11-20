@@ -19,6 +19,14 @@ public class Point {
         return new Point(first.x + second.x, first.y + second.y);
     }
 
+    public static int mdist(Point first, Point second) {
+        return Math.abs(first.x - second.x) * Math.abs(first.y - second.y);
+    }
+
+    public static int dist(Point first, Point second) {
+        return Math.abs(first.x - second.x) + Math.abs(first.y - second.y);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -2,6 +2,7 @@ package io.battlesnake.starter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.battlesnake.starter.model.Analyzer;
 import io.battlesnake.starter.model.Core;
 import io.battlesnake.starter.model.heuristic.Heuristic;
 import io.battlesnake.starter.model.prediction.Prediction;
@@ -86,6 +87,75 @@ public class Server {
 //                "    ]\n" +
 //                "  }\n" +
 //                "}");
+//        Analyzer analyzer = new Analyzer("{\n" +
+//                "  \"game\": {\n" +
+//                "    \"id\": \"game-id-string\"\n" +
+//                "  },\n" +
+//                "  \"turn\": 4,\n" +
+//                "  \"board\": {\n" +
+//                "    \"height\": 15,\n" +
+//                "    \"width\": 15,\n" +
+//                "    \"food\": [\n" +
+//                "      {\n" +
+//                "        \"x\": 5,\n" +
+//                "        \"y\": 3\n" +
+//                "      },\n" +
+//                "      {\n" +
+//                "        \"x\": 3,\n" +
+//                "        \"y\": 3\n" +
+//                "      }\n" +
+//                "    ],\n" +
+//                "    \"snakes\": [\n" +
+//                "      {\n" +
+//                "        \"id\": \"snake-id-string\",\n" +
+//                "        \"name\": \"Sneky Snek\",\n" +
+//                "        \"health\": 90,\n" +
+//                "        \"body\": [\n" +
+//                "          {\n" +
+//                "            \"x\": 1,\n" +
+//                "            \"y\": 0\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"x\": 1,\n" +
+//                "            \"y\": 1\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"x\": 2,\n" +
+//                "            \"y\": 1\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"x\": 2,\n" +
+//                "            \"y\": 0\n" +
+//                "          }\n" +
+//                "        ]\n" +
+//                "      }\n" +
+//                "    ]\n" +
+//                "  },\n" +
+//                "  \"you\": {\n" +
+//                "    \"id\": \"snake-id-string\",\n" +
+//                "    \"name\": \"Sneky Snek\",\n" +
+//                "    \"health\": 90,\n" +
+//                "    \"body\": [\n" +
+//                "      {\n" +
+//                "        \"x\": 1,\n" +
+//                "        \"y\": 0\n" +
+//                "      },\n" +
+//                "      {\n" +
+//                "        \"x\": 1,\n" +
+//                "        \"y\": 1\n" +
+//                "      },\n" +
+//                "      {\n" +
+//                "        \"x\": 1,\n" +
+//                "        \"y\": 2\n" +
+//                "      },\n" +
+//                "      {\n" +
+//                "        \"x\": 0,\n" +
+//                "        \"y\": 2\n" +
+//                "      }\n" +
+//                "    ]\n" +
+//                "  }\n" +
+//                "}");
+//        analyzer.analyze();
 //        Prediction prediction = new Prediction();
 //        prediction.predict(core);
 
@@ -179,11 +249,14 @@ public class Server {
          * @return a response back to the engine containing snake movement values.
          */
         public Map<String, String> move(JsonNode moveRequest) {
-            Core core = new Core(moveRequest.toString());
+//            Core core = new Core(moveRequest.toString());
 //            Prediction prediction = new Prediction();
 //            String direction = prediction.predict(core);
-            Heuristic algorithm = new Heuristic(core);
-            String direction = algorithm.heuristic().getKey();
+//            Heuristic algorithm = new Heuristic(core);
+//            algorithm.heuristic(1);
+//            String direction = algorithm.getResult().getKey();
+            Analyzer analyzer = new Analyzer(moveRequest.toString());
+            String direction = analyzer.analyze();
             Map<String, String> response = new HashMap<>();
             response.put("move", direction);
             return response;
