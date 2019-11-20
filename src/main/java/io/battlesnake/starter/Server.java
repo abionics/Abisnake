@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import spark.Request;
 import spark.Response;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,47 +32,15 @@ public class Server {
      *
      * @param args are ignored.
      */
-    public static void main(String[] args) throws IOException {
-        Logic logic = new Logic("{\n" +
-                "  \"game\": {\n" +
-                "    \"id\": \"game-id-string\"\n" +
-                "  },\n" +
-                "  \"turn\": 4,\n" +
-                "  \"board\": {\n" +
-                "    \"height\": 15,\n" +
-                "    \"width\": 15,\n" +
-                "    \"food\": [\n" +
-                "      {\n" +
-                "        \"x\": 1,\n" +
-                "        \"y\": 3\n" +
-                "      }\n" +
-                "    ],\n" +
-                "    \"snakes\": [\n" +
-                "      {\n" +
-                "        \"id\": \"snake-id-string\",\n" +
-                "        \"name\": \"Sneky Snek\",\n" +
-                "        \"health\": 90,\n" +
-                "        \"body\": [\n" +
-                "          {\n" +
-                "            \"x\": 1,\n" +
-                "            \"y\": 3\n" +
-                "          }\n" +
-                "        ]\n" +
-                "      }\n" +
-                "    ]\n" +
-                "  },\n" +
-                "  \"you\": {\n" +
-                "    \"id\": \"snake-id-string\",\n" +
-                "    \"name\": \"Sneky Snek\",\n" +
-                "    \"health\": 90,\n" +
-                "    \"body\": [\n" +
-                "      {\n" +
-                "        \"x\": 1,\n" +
-                "        \"y\": 3\n" +
-                "      }\n" +
-                "    ]\n" +
-                "  }\n" +
-                "}");
+    public static void main(String[] args) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"));
+            writer.write("test");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         String port = System.getProperty("PORT");
         if (port != null) {
             LOG.info("Found system provided port: {}", port);
