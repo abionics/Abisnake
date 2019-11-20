@@ -249,14 +249,15 @@ public class Server {
          * @return a response back to the engine containing snake movement values.
          */
         public Map<String, String> move(JsonNode moveRequest) {
-//            Core core = new Core(moveRequest.toString());
+            Core core = new Core(moveRequest.toString());
 //            Prediction prediction = new Prediction();
 //            String direction = prediction.predict(core);
-//            Heuristic algorithm = new Heuristic(core);
-//            algorithm.heuristic(1);
+            Heuristic algorithm = new Heuristic(core);
+            algorithm.heuristic(1);
+            String direction = algorithm.getResult().getKey();
 //            String direction = algorithm.getResult().getKey();
-            Analyzer analyzer = new Analyzer(moveRequest.toString());
-            String direction = analyzer.analyze();
+//            Analyzer analyzer = new Analyzer(moveRequest.toString());
+//            String direction = analyzer.analyze();
             Map<String, String> response = new HashMap<>();
             response.put("move", direction);
             return response;
