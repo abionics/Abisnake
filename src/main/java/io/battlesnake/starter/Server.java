@@ -33,6 +33,7 @@ public class Server {
      * @param args are ignored.
      */
     public static void main(String[] args) {
+        System.out.println("run");
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"));
             writer.write("test");
