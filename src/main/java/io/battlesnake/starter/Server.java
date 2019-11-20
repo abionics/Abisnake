@@ -33,46 +33,47 @@ public class Server {
      * @param args are ignored.
      */
     public static void main(String[] args) {
-        Logic logic = new Logic("{\n" +
-                "  \"game\": {\n" +
-                "    \"id\": \"game-id-string\"\n" +
-                "  },\n" +
-                "  \"turn\": 4,\n" +
-                "  \"board\": {\n" +
-                "    \"height\": 15,\n" +
-                "    \"width\": 15,\n" +
-                "    \"food\": [\n" +
-                "      {\n" +
-                "        \"x\": 1,\n" +
-                "        \"y\": 3\n" +
-                "      }\n" +
-                "    ],\n" +
-                "    \"snakes\": [\n" +
-                "      {\n" +
-                "        \"id\": \"snake-id-string\",\n" +
-                "        \"name\": \"Sneky Snek\",\n" +
-                "        \"health\": 90,\n" +
-                "        \"body\": [\n" +
-                "          {\n" +
-                "            \"x\": 1,\n" +
-                "            \"y\": 3\n" +
-                "          }\n" +
-                "        ]\n" +
-                "      }\n" +
-                "    ]\n" +
-                "  },\n" +
-                "  \"you\": {\n" +
-                "    \"id\": \"snake-id-string\",\n" +
-                "    \"name\": \"Sneky Snek\",\n" +
-                "    \"health\": 90,\n" +
-                "    \"body\": [\n" +
-                "      {\n" +
-                "        \"x\": 1,\n" +
-                "        \"y\": 3\n" +
-                "      }\n" +
-                "    ]\n" +
-                "  }\n" +
-                "}");
+//        Logic logic = new Logic("{\n" +
+//                "  \"game\": {\n" +
+//                "    \"id\": \"game-id-string\"\n" +
+//                "  },\n" +
+//                "  \"turn\": 4,\n" +
+//                "  \"board\": {\n" +
+//                "    \"height\": 15,\n" +
+//                "    \"width\": 15,\n" +
+//                "    \"food\": [\n" +
+//                "      {\n" +
+//                "        \"x\": 1,\n" +
+//                "        \"y\": 3\n" +
+//                "      }\n" +
+//                "    ],\n" +
+//                "    \"snakes\": [\n" +
+//                "      {\n" +
+//                "        \"id\": \"snake-id-string\",\n" +
+//                "        \"name\": \"Sneky Snek\",\n" +
+//                "        \"health\": 90,\n" +
+//                "        \"body\": [\n" +
+//                "          {\n" +
+//                "            \"x\": 1,\n" +
+//                "            \"y\": 3\n" +
+//                "          }\n" +
+//                "        ]\n" +
+//                "      }\n" +
+//                "    ]\n" +
+//                "  },\n" +
+//                "  \"you\": {\n" +
+//                "    \"id\": \"snake-id-string\",\n" +
+//                "    \"name\": \"Sneky Snek\",\n" +
+//                "    \"health\": 90,\n" +
+//                "    \"body\": [\n" +
+//                "      {\n" +
+//                "        \"x\": 1,\n" +
+//                "        \"y\": 3\n" +
+//                "      }\n" +
+//                "    ]\n" +
+//                "  }\n" +
+//                "}");
+//        logic.heuristic();
 
         String port = System.getProperty("PORT");
         if (port != null) {
@@ -164,6 +165,7 @@ public class Server {
         public Map<String, String> move(JsonNode moveRequest) {
             System.out.println("???");
             Logic logic = new Logic(moveRequest.toString());
+            logic.heuristic();
             Map<String, String> response = new HashMap<>();
             response.put("move", "down");
             return response;
