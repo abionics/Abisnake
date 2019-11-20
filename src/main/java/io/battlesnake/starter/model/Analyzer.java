@@ -88,7 +88,7 @@ public class Analyzer extends Core {
 
         for (int directionID = 0; directionID < 4; directionID++)
             if (!suitDirections[directionID])
-                result.put(Prediction.names[directionID], 0);
+                result.put(Prediction.names[directionID], Integer.MIN_VALUE);
 
         return heuristic.getResult().getKey();
     }
