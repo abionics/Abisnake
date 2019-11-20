@@ -44,7 +44,7 @@ public class Analyzer extends Core {
                 countFree = 0;
                 Point start = Point.add(head, Directions.values().get(directionID));
                 lookFree(start);
-                if (countFree < me.length + 2 && suitCount > 0) {
+                if (countFree < me.length + 2 && suitCount > 1) {
                     suitDirections[directionID] = false;
                     suitCount--;
                 }
@@ -59,7 +59,7 @@ public class Analyzer extends Core {
                     Point start = Point.add(head, Directions.values().get(directionID));
                     int dist = Point.dist(snake.head(), start);
                     System.out.println(dist + " " + head + " " + start + " | " + snake.length + " " + me.length);
-                    if (dist == 1 && snake.length >= me.length && suitCount > 0) {
+                    if (dist == 1 && snake.length >= me.length && suitCount > 1) {
                         System.out.println("Snake " + snake.name + " is too close and bigger than you, remove " + directionID);
                         suitDirections[directionID] = false;
                         suitCount--;
