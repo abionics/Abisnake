@@ -33,13 +33,13 @@ public class Server {
      * @param args are ignored.
      */
     public static void main(String[] args) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"));
-            writer.write("test");
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"));
+//            writer.write("test");
+//            writer.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         String port = System.getProperty("PORT");
         if (port != null) {
@@ -129,7 +129,7 @@ public class Server {
          * @return a response back to the engine containing snake movement values.
          */
         public Map<String, String> move(JsonNode moveRequest) throws IOException {
-            Logic logic = new Logic(moveRequest.asText());
+//            Logic logic = new Logic(moveRequest.asText());
             Map<String, String> response = new HashMap<>();
             response.put("move", "down");
             return response;
