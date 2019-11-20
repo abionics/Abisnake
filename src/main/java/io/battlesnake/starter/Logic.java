@@ -150,6 +150,7 @@ class Logic {
         return field[x][y];
     }
 
+    
     private <T> void print(T[][] array, int side) {
         for (int j = 0; j < side; j++) {
             for (int i = 0; i < side; i++)

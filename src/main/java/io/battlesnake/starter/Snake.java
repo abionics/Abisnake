@@ -18,14 +18,14 @@ public class Snake {
         name = json.getString("name");
         health = json.getInt("health");
         body = new ArrayList<>();
-        JSONArray body = json.getJSONArray("body");
-        for (int i = 0; i < body.length(); i++) {
-            JSONObject point = body.getJSONObject(i);
+        JSONArray bodyJSON = json.getJSONArray("body");
+        for (int i = 0; i < bodyJSON.length(); i++) {
+            JSONObject point = bodyJSON.getJSONObject(i);
             int x = point.getInt("x");
             int y = point.getInt("y");
-            this.body.add(new Point(x, y));
+            body.add(new Point(x, y));
         }
-        head = this.body.get(0);
+        head = body.get(0);
     }
 
     public boolean equals(Object other) {
