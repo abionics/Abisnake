@@ -7,15 +7,10 @@ import org.slf4j.LoggerFactory;
 import spark.Request;
 import spark.Response;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static spark.Spark.port;
-import static spark.Spark.post;
-import static spark.Spark.get;
+import static spark.Spark.*;
 
 /**
  * Snake server that deals with requests from the snake engine.
@@ -156,7 +151,9 @@ public class Server {
          */
         public Map<String, String> start(JsonNode startRequest) {
             Map<String, String> response = new HashMap<>();
+            response.put("headType", "smile");
             response.put("color", "#ff00ff");
+            response.put("tailType", "block-bum");
             return response;
         }
 

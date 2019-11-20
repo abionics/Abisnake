@@ -4,13 +4,17 @@ import io.battlesnake.starter.help.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.BiConsumer;
 
 class Logic {
-    private static final String NAME = "StarterSnake";
+    private static final int NEAREST_FIELD_SIZE = 7;
+    private static final int NEAREST_FIELD_CENTER = NEAREST_FIELD_SIZE / 2;
 
     private final int width;
     private final int height;
@@ -69,45 +73,49 @@ class Logic {
         Element[][] nearest = getNearest();
         int[][] foodWeight = readFile("food.txt");
         int[][] bodyWeight = readFile("body.txt");
-//        print(nearest, 5, 5);
-        print(5, 5);
+        print(NEAREST_FIELD_SIZE);
 
-        AtomicInteger up = new AtomicInteger(0);
-        AtomicInteger right = new AtomicInteger(0);
-        AtomicInteger down = new AtomicInteger(0);
-        AtomicInteger left = new AtomicInteger(0);
-        BiConsumer<AtomicInteger, Integer> sum = (pointer, value) -> pointer.set(pointer.get() + value);
+        HashMap<String, Integer> directions = new HashMap<>(4);
+        directions.put("up", 0);
+        directions.put("right", 0);
+        directions.put("down", 0);
+        directions.put("left", 0);
+        BiConsumer<String, Integer> sum = (direction, value) -> {
+            int val = directions.get(direction);
+            directions.put(direction, value + val);
+        };
         BiConsumer<Point, Integer> calculate = (point, value) -> {
-            if (point.x < 2) sum.accept(left, value);
-            if (point.x > 2) sum.accept(right, value);
-            if (point.y > 2) sum.accept(down, value);
-            if (point.y < 2) sum.accept(up, value);
+            if (point.x < NEAREST_FIELD_CENTER) sum.accept("left", value);
+            if (point.x > NEAREST_FIELD_CENTER) sum.accept("right", value);
+            if (point.y > NEAREST_FIELD_CENTER) sum.accept("down", value);
+            if (point.y < NEAREST_FIELD_CENTER) sum.accept("up", value);
         };
 
-        int size = 5;
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++) {
+        for (int i = 0; i < NEAREST_FIELD_SIZE; i++)
+            for (int j = 0; j < NEAREST_FIELD_SIZE; j++) {
                 Element element = nearest[i][j];
                 Point point = new Point(i, j);
                 if (element == Element.FOOD) calculate.accept(point, foodWeight[i][j]);
                 if (element == Element.BODY) calculate.accept(point, bodyWeight[i][j]);
             }
 
-        print(nearest, 5, 5);
-        System.out.println(up + " " + right + " " + down + " " + left);
-        if ((up.get() >= left.get()) && (up.get() >= down.get()) && (up.get() >= right.get())) return "up";
-        if ((right.get() >= left.get()) && (right.get() >= down.get()) && (right.get() >= up.get())) return "right";
-        if ((down.get() >= left.get()) && (down.get() >= up.get()) && (down.get() >= right.get())) return "down";
-        if ((left.get() >= up.get()) && (left.get() >= down.get()) && (left.get() >= right.get())) return "left";
-        return "";
+        print(nearest, NEAREST_FIELD_SIZE);
+        Map.Entry<String, Integer> max = null;
+        for (Map.Entry<String, Integer> item : directions.entrySet()) {
+            if (max == null || item.getValue() > max.getValue()) {
+                max = item;
+            }
+        }
+        System.out.println(directions);
+        System.out.println(max);
+        return max.getKey();
     }
 
     private int[][] readFile(String name) {
-        int size = 5;
         try {
-            int[][] result = new int[size][size];
-            for (int i = 0; i < size; i++)
-                for (int j = 0; j < size; j++)
+            int[][] result = new int[NEAREST_FIELD_SIZE][NEAREST_FIELD_SIZE];
+            for (int i = 0; i < NEAREST_FIELD_SIZE; i++)
+                for (int j = 0; j < NEAREST_FIELD_SIZE; j++)
                     result[i][j] = 0;
             BufferedReader reader = new BufferedReader(new FileReader(name));
             String line = reader.readLine();
@@ -129,11 +137,10 @@ class Logic {
     }
 
     private Element[][] getNearest() {
-        int size = 5;
-        Element[][] result = new Element[size][size];
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
-                result[i][j] = get(head.x + i - 2, head.y + j - 2);
+        Element[][] result = new Element[NEAREST_FIELD_SIZE][NEAREST_FIELD_SIZE];
+        for (int i = 0; i < NEAREST_FIELD_SIZE; i++)
+            for (int j = 0; j < NEAREST_FIELD_SIZE; j++)
+                result[i][j] = get(head.x + i - NEAREST_FIELD_CENTER, head.y + j - NEAREST_FIELD_CENTER);
         return result;
     }
 
@@ -143,25 +150,25 @@ class Logic {
         return field[x][y];
     }
 
-    private <T> void print(T[][] array, int width, int height) {
-        for (int j = 0; j < height; j++) {
-            for (int i = 0; i < width; i++)
+    private <T> void print(T[][] array, int side) {
+        for (int j = 0; j < side; j++) {
+            for (int i = 0; i < side; i++)
                 System.out.print(array[i][j] + "\t");
             System.out.println();
         }
     }
 
-    private void print(int width, int height) {
-        for (int j = 0; j < height; j++) {
-            for (int i = 0; i < width; i++)
+    private void print(int side) {
+        for (int j = 0; j < side; j++) {
+            for (int i = 0; i < side; i++)
                 System.out.print(new Point(i, j) + "\t");
             System.out.println();
         }
     }
 
-    private void print(int[][] array, int width, int height) {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++)
+    private void print(int[][] array, int side) {
+        for (int i = 0; i < side; i++) {
+            for (int j = 0; j < side; j++)
                 System.out.print(array[i][j] + "\t");
             System.out.println();
         }
