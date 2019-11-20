@@ -253,7 +253,7 @@ public class Server {
 //            Prediction prediction = new Prediction();
 //            String direction = prediction.predict(core);
 
-//            Heuristic algorithm = new Heuristic(core);
+//            Heuristic algorithm = new Heuristic(core);    
 //            algorithm.heuristic(1);
 //            String direction = algorithm.getResult().getKey();
 
