@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiConsumer;
 
 class Logic {
     private static final String NAME = "StarterSnake";
@@ -63,18 +65,50 @@ class Logic {
 //        print();
     }
 
-    void heuristic() {
+    String heuristic() {
         Element[][] nearest = getNearest();
         int[][] foodWeight = readFile("food.txt");
         int[][] bodyWeight = readFile("body.txt");
+//        print(nearest, 5, 5);
+        print(5, 5);
+
+        AtomicInteger up = new AtomicInteger(0);
+        AtomicInteger right = new AtomicInteger(0);
+        AtomicInteger down = new AtomicInteger(0);
+        AtomicInteger left = new AtomicInteger(0);
+        BiConsumer<AtomicInteger, Integer> sum = (pointer, value) -> pointer.set(pointer.get() + value);
+        BiConsumer<Point, Integer> calculate = (point, value) -> {
+            if (point.x < 2) sum.accept(left, value);
+            if (point.x > 2) sum.accept(right, value);
+            if (point.y > 2) sum.accept(down, value);
+            if (point.y < 2) sum.accept(up, value);
+        };
+
+        int size = 5;
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++) {
+                Element element = nearest[i][j];
+                Point point = new Point(i, j);
+                if (element == Element.FOOD) calculate.accept(point, foodWeight[i][j]);
+                if (element == Element.BODY) calculate.accept(point, bodyWeight[i][j]);
+            }
+
         print(nearest, 5, 5);
-//        print(foodWeight, 5, 5);
+        System.out.println(up + " " + right + " " + down + " " + left);
+        if ((up.get() >= left.get()) && (up.get() >= down.get()) && (up.get() >= right.get())) return "up";
+        if ((right.get() >= left.get()) && (right.get() >= down.get()) && (right.get() >= up.get())) return "right";
+        if ((down.get() >= left.get()) && (down.get() >= up.get()) && (down.get() >= right.get())) return "down";
+        if ((left.get() >= up.get()) && (left.get() >= down.get()) && (left.get() >= right.get())) return "left";
+        return "";
     }
 
     private int[][] readFile(String name) {
         int size = 5;
         try {
             int[][] result = new int[size][size];
+            for (int i = 0; i < size; i++)
+                for (int j = 0; j < size; j++)
+                    result[i][j] = 0;
             BufferedReader reader = new BufferedReader(new FileReader(name));
             String line = reader.readLine();
             int i = 0;
@@ -90,7 +124,7 @@ class Logic {
             return result;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return new int[0][0];
         }
     }
 
@@ -104,14 +138,23 @@ class Logic {
     }
 
     private Element get(int x, int y) {
+        if (x == -1 || x == width || y == -1 || y == height) return Element.BODY;
         if (x < 0 || x >= width || y < 0 || y >= height) return Element.NONE;
         return field[x][y];
     }
 
     private <T> void print(T[][] array, int width, int height) {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++)
+        for (int j = 0; j < height; j++) {
+            for (int i = 0; i < width; i++)
                 System.out.print(array[i][j] + "\t");
+            System.out.println();
+        }
+    }
+
+    private void print(int width, int height) {
+        for (int j = 0; j < height; j++) {
+            for (int i = 0; i < width; i++)
+                System.out.print(new Point(i, j) + "\t");
             System.out.println();
         }
     }

@@ -56,6 +56,10 @@ public class Server {
 //                "          {\n" +
 //                "            \"x\": 1,\n" +
 //                "            \"y\": 3\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"x\": 1,\n" +
+//                "            \"y\": 4\n" +
 //                "          }\n" +
 //                "        ]\n" +
 //                "      }\n" +
@@ -73,7 +77,7 @@ public class Server {
 //                "    ]\n" +
 //                "  }\n" +
 //                "}");
-//        logic.heuristic();
+//        System.out.println(logic.heuristic());
 
         String port = System.getProperty("PORT");
         if (port != null) {
@@ -163,11 +167,10 @@ public class Server {
          * @return a response back to the engine containing snake movement values.
          */
         public Map<String, String> move(JsonNode moveRequest) {
-            System.out.println("???");
             Logic logic = new Logic(moveRequest.toString());
-            logic.heuristic();
+            String direction = logic.heuristic();
             Map<String, String> response = new HashMap<>();
-            response.put("move", "down");
+            response.put("move", direction);
             return response;
         }
 
