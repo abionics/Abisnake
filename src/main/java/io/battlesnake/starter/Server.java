@@ -131,7 +131,7 @@ public class Server {
          */
         public Map<String, String> move(JsonNode moveRequest) {
             System.out.println("???");
-            Logic logic = new Logic(moveRequest.asText());
+            Logic logic = new Logic(moveRequest.toString());
             Map<String, String> response = new HashMap<>();
             response.put("move", "down");
             return response;
