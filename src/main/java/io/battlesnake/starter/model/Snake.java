@@ -28,18 +28,32 @@ public class Snake {
         length = body.size();
     }
 
-    Point head() {
+    public Snake(Snake other) {
+        this.id = other.id;
+        this.name = other.name;
+        this.health = other.health;
+        this.body = new ArrayList<>(other.body.size());
+        for (Point point : other.body) {
+            body.add(new Point(point));
+        }
+        this.length = other.length;
+    }
+
+    public Point head() {
         return body.get(0);
     }
 
-    void move(int dx, int dy, boolean isEaten) {
+    public void move(int dx, int dy, boolean isEaten) {
+        System.out.println("b_: " + body);
         Point last = new Point(body.get(body.size() - 1));
-        for (int i = body.size() - 1; i > 0; i++) {
-            body.set(i, body.get(i - 1));
+        for (int i = body.size() - 1; i > 0; i--) {
+            System.out.println("!!!");
+            body.set(i, new Point(body.get(i - 1)));
         }
         if (isEaten) body.add(last);
         head().x += dx;
         head().y += dy;
+        System.out.println("b: " + body);
     }
 
     public boolean equals(Object other) {

@@ -15,6 +15,10 @@ public class Point {
         y = point.y;
     }
 
+    public static Point add(Point first, Point second) {
+        return new Point(first.x + second.x, first.y + second.y);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

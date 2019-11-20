@@ -22,11 +22,12 @@ public class Heuristic {
         this.core = core;
     }
 
-    public String heuristic() {
+    public Map.Entry<String, Integer> heuristic() {
         Element[][] nearest = core.getNearest(NEAREST_FIELD_SIZE);
         int[][] foodWeight = readFile("food.txt", NEAREST_FIELD_SIZE);
         int[][] bodyWeight = readFile("body.txt", NEAREST_FIELD_SIZE);
         int[][] headWeight = readFile("head.txt", NEAREST_FIELD_SIZE);
+        int[][] wallWeight = readFile("wall.txt", NEAREST_FIELD_SIZE);
 
         HashMap<String, Integer> directions = new HashMap<>(4);
         directions.put("up", 0);
@@ -52,18 +53,19 @@ public class Heuristic {
                 if (element == Element.FOOD) calculate.accept(point, foodWeight[i][j]);
                 if (element == Element.BODY) calculate.accept(point, bodyWeight[i][j]);
                 if (element == Element.HEAD) calculate.accept(point, headWeight[i][j]);
+                if (element == Element.WALL) calculate.accept(point, wallWeight[i][j]);
             }
 
-        Printer.print(nearest, NEAREST_FIELD_SIZE);
+//        Printer.print(nearest, NEAREST_FIELD_SIZE);
         Map.Entry<String, Integer> max = null;
         for (Map.Entry<String, Integer> item : directions.entrySet()) {
             if (max == null || item.getValue() > max.getValue()) {
                 max = item;
             }
         }
-        System.out.println(directions);
-        System.out.println(max);
-        return max.getKey();
+//        System.out.println(directions);
+//        System.out.println(max);
+        return max;
     }
 
     static int[][] readFile(String name, int size) {

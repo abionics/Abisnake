@@ -7,14 +7,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Core {
-    private final int width;
-    private final int height;
-    private final ArrayList<Point> food;
-    private final ArrayList<Snake> snakes;
-    private final Snake me;
+    public final int width;
+    public final int height;
+    public final ArrayList<Point> food;
+    public final ArrayList<Snake> snakes;
+    public final Snake me;
 
-    private Element[][] field;
-    private Point head;
+    public Element[][] field;
+    public Point head;
 
 
     public Core(String json) {
@@ -40,7 +40,6 @@ public class Core {
         }
 
         me = new Snake(object.getJSONObject("you"));
-        head = me.head();
         snakes.remove(me);
 
         System.out.println("! " + me.toString());
@@ -48,6 +47,22 @@ public class Core {
             System.out.println("@ " + snake);
         for (Point point : food)
             System.out.println("* " + point);
+
+        init();
+    }
+
+    public Core(Core other) {
+        this.width = other.width;
+        this.height = other.height;
+        this.food = new ArrayList<>(other.food.size());
+        for (Point point : other.food) {
+            this.food.add(new Point(point));
+        }
+        this.snakes = new ArrayList<>(other.snakes.size());
+        for (Snake snake : other.snakes) {
+            this.snakes.add(new Snake(snake));
+        }
+        this.me = new Snake(other.me);
 
         init();
     }
@@ -65,9 +80,11 @@ public class Core {
             Point head = snake.head();
             field[head.x][head.y] = Element.HEAD;
         }
-        System.out.println(me.body);
+//        System.out.println(me.body);
         for (Point point : me.body)
             field[point.x][point.y] = Element.BODY;
+
+        head = new Point(me.head());
     }
 
     public Element[][] getNearest(int size) {
@@ -79,8 +96,8 @@ public class Core {
         return result;
     }
 
-    private Element get(int x, int y) {
-        if (x == -1 || x == width || y == -1 || y == height) return Element.BODY;
+    public Element get(int x, int y) {
+        if (x == -1 || x == width || y == -1 || y == height) return Element.WALL;
         if (x < -1 || x > width || y < -1 || y > height) return Element.NONE;
         return field[x][y];
     }
