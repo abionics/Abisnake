@@ -38,6 +38,15 @@
             <version>5.2.0</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -50,7 +59,7 @@
                     <arguments>
                         <argument>-classpath</argument>
                         <classpath/>
-                        <argument>io.battlesnake.starter.Snake</argument>
+                        <argument>io.battlesnake.starter.Server</argument>
                     </arguments>
                 </configuration>
             </plugin>
@@ -94,7 +103,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        io.battlesnake.starter.Snake
+                                        io.battlesnake.starter.Server
                                     </mainClass>
                                 </manifest>
                             </archive>
