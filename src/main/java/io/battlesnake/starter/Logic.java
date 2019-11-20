@@ -5,7 +5,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,8 +17,8 @@ public class Logic {
     final Snake me;
 
     Logic(String json) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt"));
-        writer.write(json + "\n");
+//        BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt"));
+//        writer.write(json + "\n");
 
         JSONObject object = new JSONObject(json);
 
@@ -42,9 +41,9 @@ public class Logic {
         }
 
         me = new Snake(object.getJSONObject("you"));
-        writer.write(me.toString() + "\n\n");
-        for (Snake snake : this.snakes)
-            writer.write(snake.toString() + "\n");
-        writer.close();
+//        writer.write(me.toString() + "\n\n");
+//        for (Snake snake : this.snakes)
+//            writer.write(snake.toString() + "\n");
+//        writer.close();
     }
 }

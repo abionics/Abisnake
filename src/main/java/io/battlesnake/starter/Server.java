@@ -129,7 +129,7 @@ public class Server {
          * @return a response back to the engine containing snake movement values.
          */
         public Map<String, String> move(JsonNode moveRequest) throws IOException {
-//            Logic logic = new Logic(moveRequest.asText());
+            Logic logic = new Logic(moveRequest.asText());
             Map<String, String> response = new HashMap<>();
             response.put("move", "down");
             return response;
