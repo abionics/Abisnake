@@ -14,8 +14,8 @@ public class Snake {
 
     Snake(JSONObject json) {
         id = json.getString("id");
-        name = json.getString("id");
-        health = json.getInt("id");
+        name = json.getString("name");
+        health = json.getInt("health");
         body = new ArrayList<>();
         JSONArray body = json.getJSONArray("body");
         for (int i = 0; i < body.length(); i++) {

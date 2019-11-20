@@ -19,7 +19,7 @@ public class Logic {
 
     Logic(String json) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt"));
-        writer.write(json);
+        writer.write(json + "\n");
 
         JSONObject object = new JSONObject(json);
 
@@ -36,13 +36,15 @@ public class Logic {
         }
         snakes = new ArrayList<>();
         JSONArray snakes = board.getJSONArray("snakes");
-        for (int i = 0; i < food.length(); i++) {
+        for (int i = 0; i < snakes.length(); i++) {
             Snake snake = new Snake(snakes.getJSONObject(i));
             this.snakes.add(snake);
         }
 
         me = new Snake(object.getJSONObject("you"));
-        writer.write(me.toString());
+        writer.write(me.toString() + "\n\n");
+        for (Snake snake : this.snakes)
+            writer.write(snake.toString() + "\n");
         writer.close();
     }
 }
