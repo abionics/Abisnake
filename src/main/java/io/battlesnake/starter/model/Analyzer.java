@@ -109,6 +109,7 @@ public class Analyzer extends Core {
     }
 
     private String getSingleSuit() {
+        System.out.println("single");
         for (int i = 0; i < 4; i++)
             if (suitDirections[i])
                 return Prediction.names[i];
