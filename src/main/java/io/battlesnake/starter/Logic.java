@@ -17,8 +17,9 @@ public class Logic {
 //    final Snake me;
 
     Logic(String json) {
-//        BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt"));
-//        writer.write(json + "\n");
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt"));
+            writer.write(json + "\n");
 
 //        JSONObject object = new JSONObject(json);
 //
@@ -44,6 +45,9 @@ public class Logic {
 //        writer.write(me.toString() + "\n\n");
 //        for (Snake snake : this.snakes)
 //            writer.write(snake.toString() + "\n");
-//        writer.close();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
