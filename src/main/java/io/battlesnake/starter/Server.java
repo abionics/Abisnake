@@ -129,8 +129,8 @@ public class Server {
          * @param moveRequest a map containing the JSON sent to this snake. See the spec for details of what this contains.
          * @return a response back to the engine containing snake movement values.
          */
-        public Map<String, String> move(JsonNode moveRequest) throws IOException {
-//            Logic logic = new Logic(moveRequest.asText());
+        public Map<String, String> move(JsonNode moveRequest) {
+            Logic logic = new Logic(moveRequest.asText());
             Map<String, String> response = new HashMap<>();
             response.put("move", "down");
             return response;

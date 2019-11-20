@@ -16,7 +16,7 @@ public class Logic {
     final ArrayList<Snake> snakes;
     final Snake me;
 
-    Logic(String json) throws IOException {
+    Logic(String json) {
 //        BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt"));
 //        writer.write(json + "\n");
 
