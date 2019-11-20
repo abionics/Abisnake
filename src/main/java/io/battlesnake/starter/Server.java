@@ -33,14 +33,46 @@ public class Server {
      * @param args are ignored.
      */
     public static void main(String[] args) {
-        System.out.println("run");
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"));
-            writer.write("test");
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Logic logic = new Logic("{\n" +
+                "  \"game\": {\n" +
+                "    \"id\": \"game-id-string\"\n" +
+                "  },\n" +
+                "  \"turn\": 4,\n" +
+                "  \"board\": {\n" +
+                "    \"height\": 15,\n" +
+                "    \"width\": 15,\n" +
+                "    \"food\": [\n" +
+                "      {\n" +
+                "        \"x\": 1,\n" +
+                "        \"y\": 3\n" +
+                "      }\n" +
+                "    ],\n" +
+                "    \"snakes\": [\n" +
+                "      {\n" +
+                "        \"id\": \"snake-id-string\",\n" +
+                "        \"name\": \"Sneky Snek\",\n" +
+                "        \"health\": 90,\n" +
+                "        \"body\": [\n" +
+                "          {\n" +
+                "            \"x\": 1,\n" +
+                "            \"y\": 3\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"you\": {\n" +
+                "    \"id\": \"snake-id-string\",\n" +
+                "    \"name\": \"Sneky Snek\",\n" +
+                "    \"health\": 90,\n" +
+                "    \"body\": [\n" +
+                "      {\n" +
+                "        \"x\": 1,\n" +
+                "        \"y\": 3\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "}");
 
         String port = System.getProperty("PORT");
         if (port != null) {

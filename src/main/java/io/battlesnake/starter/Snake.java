@@ -11,6 +11,7 @@ public class Snake {
     final String name;
     final int health;
     final ArrayList<Point> body;
+    final Point head;
 
     Snake(JSONObject json) {
         id = json.getString("id");
@@ -24,6 +25,15 @@ public class Snake {
             int y = point.getInt("y");
             this.body.add(new Point(x, y));
         }
+        head = this.body.get(0);
+    }
+
+    public boolean equals(Object other) {
+        if (other == null) return false;
+        if (other == this) return true;
+        if (!(other instanceof Snake)) return false;
+        Snake snake = (Snake) other;
+        return snake.name.equals(this.name);
     }
 
     @Override
