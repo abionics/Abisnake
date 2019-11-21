@@ -1,4 +1,4 @@
-package io.battlesnake.starter.help;
+package io.battlesnake.abisnake.help;
 
 import java.util.Objects;
 

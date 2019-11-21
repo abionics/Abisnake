@@ -1,8 +1,8 @@
-package io.battlesnake.starter;
+package io.battlesnake.abisnake;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.battlesnake.starter.model.Analyzer;
+import io.battlesnake.abisnake.model.Analyzer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Request;

@@ -1,6 +1,6 @@
-package io.battlesnake.starter.model;
+package io.battlesnake.abisnake.model;
 
-import io.battlesnake.starter.help.Point;
+import io.battlesnake.abisnake.help.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

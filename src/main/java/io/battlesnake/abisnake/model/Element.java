@@ -1,4 +1,4 @@
-package io.battlesnake.starter.model;
+package io.battlesnake.abisnake.model;
 
 public enum Element {
     NONE, BODY, HEAD, FOOD, WALL

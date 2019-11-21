@@ -1,6 +1,6 @@
 {
-  "name": "Battlesnake Java Starter Snake",
-  "description": "A sample starter snake for battlesnake written in java",
-  "repository": "https://github.com/battlesnakeio/starter-snake-java",
-  "keywords": ["battlesnake", "java"]
+  "name": "Abisnake",
+  "description": "Battlesnake by Abionics",
+  "repository": "https://github.com/abionics/Abisnake",
+  "keywords": ["abisnake", "battlesnake", "java", "abionics", "heuristic"]
 }

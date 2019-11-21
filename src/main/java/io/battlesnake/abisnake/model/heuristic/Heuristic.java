@@ -1,8 +1,8 @@
-package io.battlesnake.starter.model.heuristic;
+package io.battlesnake.abisnake.model.heuristic;
 
-import io.battlesnake.starter.help.Point;
-import io.battlesnake.starter.model.Core;
-import io.battlesnake.starter.model.Element;
+import io.battlesnake.abisnake.help.Point;
+import io.battlesnake.abisnake.model.Core;
+import io.battlesnake.abisnake.model.Element;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

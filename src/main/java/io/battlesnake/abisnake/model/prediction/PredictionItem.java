@@ -1,10 +1,10 @@
-package io.battlesnake.starter.model.prediction;
+package io.battlesnake.abisnake.model.prediction;
 
-import io.battlesnake.starter.help.Point;
-import io.battlesnake.starter.model.Core;
-import io.battlesnake.starter.model.Directions;
-import io.battlesnake.starter.model.Element;
-import io.battlesnake.starter.model.Snake;
+import io.battlesnake.abisnake.help.Point;
+import io.battlesnake.abisnake.model.Core;
+import io.battlesnake.abisnake.model.Directions;
+import io.battlesnake.abisnake.model.Element;
+import io.battlesnake.abisnake.model.Snake;
 
 class PredictionItem extends Core {
     PredictionItem(Core core) {

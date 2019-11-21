@@ -1,7 +1,7 @@
-package io.battlesnake.starter.model;
+package io.battlesnake.abisnake.model;
 
-import io.battlesnake.starter.help.Point;
-import io.battlesnake.starter.model.heuristic.Heuristic;
+import io.battlesnake.abisnake.help.Point;
+import io.battlesnake.abisnake.model.heuristic.Heuristic;
 
 import java.util.ArrayList;
 import java.util.Arrays;

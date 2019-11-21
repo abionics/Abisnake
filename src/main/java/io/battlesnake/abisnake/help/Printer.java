@@ -1,4 +1,4 @@
-package io.battlesnake.starter.help;
+package io.battlesnake.abisnake.help;
 
 public class Printer {
     public static  <T> void print(T[][] array, int side) {

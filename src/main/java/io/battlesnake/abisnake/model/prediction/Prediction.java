@@ -1,9 +1,9 @@
-package io.battlesnake.starter.model.prediction;
+package io.battlesnake.abisnake.model.prediction;
 
-import io.battlesnake.starter.help.Printer;
-import io.battlesnake.starter.model.Core;
-import io.battlesnake.starter.model.Directions;
-import io.battlesnake.starter.model.heuristic.Heuristic;
+import io.battlesnake.abisnake.help.Printer;
+import io.battlesnake.abisnake.model.Core;
+import io.battlesnake.abisnake.model.Directions;
+import io.battlesnake.abisnake.model.heuristic.Heuristic;
 
 import java.util.Arrays;
 
